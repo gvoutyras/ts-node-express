@@ -4,10 +4,12 @@ import logInfo from "@utilities/console/logInfo";
 
 export default function config(): AppConfig {
   const argv = minimist(process.argv.slice(2));
+  const useApiKey: string = argv["api-key"];
 
   let database;
   let port;
   let environment;
+  const appName = process.env.APP_NAME;
 
   if (argv.dev) {
     /**
@@ -39,6 +41,7 @@ export default function config(): AppConfig {
   const config = {
     environment,
     port,
+    appName,
     database: {
       uri: `mongodb://${process.env.DB_USER_USERNAME}:${process.env.DB_USER_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${database}?authSource=${process.env.DB_AUTH_SOURCE}`,
       options: {
@@ -47,6 +50,7 @@ export default function config(): AppConfig {
         pass: process.env.DB_ROOT_PASSWORD,
       },
     },
+    args: [{ useApiKey }],
   };
 
   return config;
