@@ -1,11 +1,13 @@
 type AppConfig = {
   environment: string | undefined;
   port: string | undefined;
-  database: DatabaseConfig | undefined;
+  appName: string | undefined;
+  database: DatabaseConfig;
+  args: Array<any>;
 };
 
 type DatabaseConfig = {
-  uri: string | undefined;
+  uri: string;
   options: {
     dbName: string | undefined;
     user: string | undefined;
