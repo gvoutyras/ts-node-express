@@ -14,6 +14,7 @@
   "author": "George Voutyras",
   "license": "ISC",
   "dependencies": {
+    "@types/winston": "^2.4.4",
     "body-parser": "^1.19.1",
     "colorts": "^0.1.63",
     "cors": "^2.8.5",
@@ -27,7 +28,10 @@
     "module-alias": "^2.2.2",
     "mongoose": "^6.1.5",
     "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "winston": "^3.3.4",
+    "winston-daily-rotate-file": "^4.5.5",
+    "winston-transport": "^4.4.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

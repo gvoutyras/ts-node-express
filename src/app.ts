@@ -11,6 +11,7 @@ import apikey from "./middlewares/apikey";
 import config from "./environment";
 import initMongo from "./lib/database";
 import logInfo from "@utilities/console/logInfo";
+import logger from "./lib/logger";
 
 dotenv.config({ path: __dirname + "/../.env" });
 const { port, database, environment, appName, args } = config();
@@ -39,6 +40,7 @@ app.get("/diag", (req, res) => {
 
 initMongo(database.uri).then(() => {
   server.listen(port, () => {
+    logger.error("as");
     console.log(logInfo(`Server started on http://localhost:${port}`));
   });
 });
