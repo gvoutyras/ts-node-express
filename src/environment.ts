@@ -22,7 +22,7 @@ export default function config(): AppConfig {
     /**
      * Staging environment
      */
-    database = "develostagingpment";
+    database = "staging";
     environment = "staging";
     port = process.env.STAG_PORT;
   } else if (argv.prod) {
