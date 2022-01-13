@@ -5,7 +5,7 @@ export default async function initDatabase(mongoUri: string): Promise<boolean> {
   const defaultOptions = {
     useNewUrlParser: true,
     autoIndex: false,
-    useCreateIndex: true, //produces error
+    // useCreateIndex: true, //produces error
     connectTimeoutMS: 10000,
     socketTimeoutMS: 45000,
     family: 4,
