@@ -14,11 +14,11 @@ export default async function initDatabase(mongoUri: string): Promise<boolean> {
 
   return await connect(mongoUri, defaultOptions)
     .then(() => {
-      console.log(logInfo(`${"Established database connection"}`));
+      logInfo(`${"Established database connection"}`);
       return true;
     })
     .catch((err) => {
-      console.log(err);
+      logInfo(`${"Database error:"} ${err}`);
       return false;
     });
 }

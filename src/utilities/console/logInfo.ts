@@ -1,3 +1,3 @@
 export default function logInfo(message: String) {
-  return `[${"Info".gray}] ${message}`;
+  return console.log(`[${"Info".gray}] ${message}`);
 }

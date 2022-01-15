@@ -36,7 +36,7 @@ export default function config(): AppConfig {
     throw new Error("No environment set");
   }
 
-  console.log(logInfo(`Active DB: ${database.magenta.bold}`));
+  logInfo(`Active DB: ${database.magenta.bold}`);
 
   const config = {
     environment,
