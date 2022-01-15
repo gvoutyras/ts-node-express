@@ -1,11 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import minimist from "minimist";
 
-export default function apikey(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Response | void {
+const apikey = (req: Request, res: Response, next: NextFunction) => {
   const argv = minimist(process.argv.slice(2));
   const useApiKey: string = argv["api-key"];
 
@@ -21,4 +17,6 @@ export default function apikey(
     }
   }
   return next();
-}
+};
+
+export default apikey;

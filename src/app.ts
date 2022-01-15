@@ -13,12 +13,16 @@ import apikey from "./middlewares/apikey";
 import config from "./environment";
 import initMongo from "./lib/database";
 import logInfo from "@utilities/console/logInfo";
+import listEndpointsMiddleware from "@middlewares/listEndpoints";
 
 dotenv.config({ path: __dirname + "/../.env" });
 const { port, database, environment, appName, args } = config();
 
 const app: Express = express();
 const server: Server = http.createServer(app);
+
+// pass refference to self, accessible from everywhere
+app.set("app", app);
 
 app.use(cors({ origin: "*" }));
 app.use(helmet());
@@ -39,19 +43,10 @@ app.get("/diag", (req, res) => {
   res.json({ port, environment, appName, args });
 });
 
-app.use("/list", (req, res) => {
-  let list = listEndpoints(app);
-
-  let result = _.transform(list, (element: any, value: any, key: any) => {
-    // eslint-disable-next-line no-param-reassign
-    element[key] = _.omit(value, "middleware");
-  });
-
-  res.status(200).json(result);
-});
+app.use("*/list", listEndpointsMiddleware);
 
 initMongo(database.uri).then(() => {
   server.listen(port, () => {
-    console.log(logInfo(`Server started on http://localhost:${port}`));
+    logInfo(`Server started on http://localhost:${port}`);
   });
 });
